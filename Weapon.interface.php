@@ -8,9 +8,9 @@
  */
 interface Weapon
 {
-    public function inRange() : array;
-    public function addCharge($points);
-    public function resetCharge();
-    public function shoot();
+    public function inRange($board) : array; // returns a list of ships in range
+    public function addCharge($points); // addes extra charge to weapon for that turn
+    public function resetCharge(); // sets the charge stat to the defalt charge of the weapon
+    public function shoot(); // only works if weapon has charge
 
 }
