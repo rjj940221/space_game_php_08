@@ -54,12 +54,27 @@ abstract class Ship
             $this->shield = $shield;
             $this->center = $center;
             $this->weapons = $weapons;
+            $this->direction = $direction;
         }
         else
             new ErrorException('direction not corecty specifyed use up, down left or right');
     }
 
-    abstract public function shoot();
+    public function get_length()
+    {
+        return $this->length;
+    }
+
+
+    public function get_width()
+    {
+        return $this->width;
+    }
+
+    public function shoot($target)
+    {
+
+    }
 
     public function powerShield()
     {
@@ -73,9 +88,10 @@ abstract class Ship
 
     public function powerSpeed()
     {
+        $dice = new Dice();
         if ($this->pp_left > 0)
         {
-            $this->shield++;
+            $this->speed_boost += $dice->roll();
             $this->pp_left--;
         }
     }
@@ -113,6 +129,13 @@ abstract class Ship
         return false;
     }
 
+    public function can_move()
+    {
+        if (($this->speed + $this->speed_boost) - $this->moved > $this->handling)
+            return true;
+        return false;
+    }
+
     public function hasPower()
     {
         if ($this->pp_left > 0)
@@ -131,6 +154,15 @@ abstract class Ship
     public function get_hull()
     {
         return $this->hull_point;
+    }
+
+    public function get_location()
+    {
+        return ($this->center);
+    }
+
+    public function get_direction(){
+        return ($this->direction);
     }
 
     public function damage($damage)
@@ -186,6 +218,7 @@ abstract class Ship
 
     public function reset()
     {
+        $this->moved_from_turn = 0;
         $this->moved = 0;
         $this->pp_left = $this->pp;
         $this->shield = 0;

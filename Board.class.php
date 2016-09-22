@@ -14,7 +14,6 @@ class board
 
     public function __construct()
     {
-        $this->_board = array(array());
         $this->place_obj(75,50,3,6);
         $this->place_obj(45,80,3,6);
         $this->place_obj(100,20,3,2);
