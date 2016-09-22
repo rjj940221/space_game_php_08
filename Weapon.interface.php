@@ -10,6 +10,7 @@ interface Weapon
 {
     public function inRange() : array;
     public function addCharge($points);
+    public function resetCharge();
     public function shoot();
 
 }
