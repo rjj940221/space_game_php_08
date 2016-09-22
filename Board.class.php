@@ -32,4 +32,11 @@ class board
         }
     }
 
+    public function get_index($x, $y)
+    {
+        if ($x < 150 && $y < 100)
+            return ($this->_board[$x][$y]);
+        return (false);
+    }
+
 }

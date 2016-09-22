@@ -155,7 +155,7 @@ abstract class Ship
             return (false);
     }
 
-    public function isStationary(): bool
+    public function isStationary()
     {
         return $this->stationary;
     }
@@ -200,9 +200,14 @@ abstract class Ship
             return false;
     }
 
-    public function setStationary(bool $stationary)
+    public function setStationary($stationary)
     {
         $this->stationary = $stationary;
+    }
+
+    public function get_fleet()
+    {
+        return ($this->fleet);
     }
 
 }
